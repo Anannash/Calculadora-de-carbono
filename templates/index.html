@@ -7,14 +7,45 @@
 </head>
 <body>
     <h1>Calculadora de Huella de Carbono</h1>
+    <h4>Por Andrea Morales Chavez 21550747</h4>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
     <form method="POST">
         <label for="km">Kilómetros recorridos:</label>
         <input type="number" step="any" name="km" required>
+        
+        <label for="tipoTransporte">Tipo de transporte:</label>
+        <select name="tipoTransporte" required>
+
+            <option value="auto">Carrito</option>
+            <option value="bus">Vivebus</option>
+            <option value="tren">Trenesito</option>
+            <option value="avion">Avionsito</option>
+            <option value="bici">Bicicletita</option>
+            <option value="moto">Motocita</option>
+            <option value="barco">Barcocito</option>
+            
+        </select>
         <button type="submit">Calcular</button>
     </form>
 
     {% if result %}
-        <p>{{ result }}</p>
+        <div>
+        <p >{{ result | safe }}</p>
+        </div>
     {% endif %}
+
+    {% if historial %}
+        <h2>Historial de Resultados</h2>
+        <ul>
+            {% for item in historial %}
+                <li>{{ item | safe}}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    
 </body>
 </html>
